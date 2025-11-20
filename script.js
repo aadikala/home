@@ -258,7 +258,7 @@ function renderPortfolioPage(page = 1) {
             <div class="info-bar">
                 <div class="artwork-info">
                     <h3>${art.title}</h3>
-                    <p>${art.artist}</p>
+                    <p>${art.style}</p>
                     <p>${art.size} • ${art.medium}</p>
                 </div>
                 <button class="read-more-btn">Details</button>
