@@ -598,7 +598,7 @@ body {
 @media (max-width: 768px) {
   .originality-cards {
     gap: 25px;
-    padding: 0 15px;
+    padding: 0 0px;
   }
 
   .originality-card { gap: 20px; }
@@ -856,7 +856,7 @@ body {
 
   /* Art title */
   #artwork-modal .modal-details h2 {
-    font-size: 1.5em; /* smaller than desktop */
+    font-size: 1.8em; /* smaller than desktop */
     margin-bottom: 12px;
     color: #D58258;
     text-align: center; /* centered title */
