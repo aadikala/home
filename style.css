@@ -614,18 +614,17 @@ body {
   .card-text { padding: 20px 15px; }
 }
 
-/* Portfolio Light Modal Overlay */
+/* =========================
+   PORTFOLIO LIGHT MODAL OVERLAY
+   ========================= */
 #artwork-modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.80);
+  inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -639,13 +638,57 @@ body {
 /* Modal Content */
 #artwork-modal .modal-content {
   background: #fff;
-  border-radius: 12px;
-  max-width: 800px;
+  border-radius: 16px;
   width: 90%;
+  max-width: 900px;
   max-height: 90%;
-  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
   position: relative;
-  padding: 20px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+
+/* Modal Image */
+#artwork-modal .modal-image {
+  flex: 1;
+  min-width: 40%;
+  background: #ECB984;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#artwork-modal .modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+/* Modal Details */
+#artwork-modal .modal-details {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  color: #963A2F;
+}
+
+#artwork-modal .modal-details h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #D58258;
+}
+
+#artwork-modal .modal-details p,
+#artwork-modal .modal-details .detail-item {
+  margin: 8px 0;
+  font-size: 1.1em;
 }
 
 /* Close Button */
@@ -653,59 +696,141 @@ body {
   position: absolute;
   top: 12px;
   right: 12px;
-  font-size: 24px;
+  font-size: 28px;
+  color: #963A2F;
   cursor: pointer;
+  z-index: 10;
 }
 
-/* Mobile View */
+/* =========================
+   MOBILE RESPONSIVE MODAL
+   ========================= */
 @media (max-width: 768px) {
   #artwork-modal .modal-content {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 0;
-    padding: 15px;
-  }
-
-  /* If content is too long, scroll the info area */
-  #artwork-modal .modal-inner {
-    display: flex;
     flex-direction: column;
-    max-height: 100%;
+    width: 95%;
+    max-width: 95%;
+    height: calc(100vh - 100px);
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 16px;
+    overflow: hidden;
   }
 
   #artwork-modal .modal-image {
-    max-height: 50vh;
-    overflow: hidden;
+    flex: 0 0 40%;
+    width: 100%;
+    min-height: 180px;
   }
 
   #artwork-modal .modal-details {
+    flex: 1 1 auto;
+    padding: 20px;
     overflow-y: auto;
-    padding-top: 10px;
+  }
+
+  #artwork-modal .modal-close {
+    top: 8px;
+    right: 8px;
+    font-size: 26px;
   }
 }
 
-
-
+/* =========================
+   MOBILE-ONLY MODAL ADJUSTMENTS
+   Applies only on screens <= 768px
+   ========================= */
 @media (max-width: 768px) {
-  /* Modal container */
   #artwork-modal .modal-content {
-    width: 100%;
-    max-width: 100%;
-    max-height: calc(100vh - 80px); /* 80px for navbar */
-    margin: 80px auto 20px; /* starts below header, small bottom gap */
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
+    flex-direction: column; /* stack image + details */
+    width: 95%;
+    max-width: 95%;
+    height: calc(100vh - 100px);
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 16px;
     overflow: hidden;
-    padding: 0;
   }
 
-  /* Image section fixed height */
   #artwork-modal .modal-image {
+    flex: 0 0 40%;
     width: 100%;
-    height: 35vh; /* adjust if needed */
-    flex-shrink: 0;
+    min-height: 180px;
+    max-height: 35vh;
+  }
+
+  #artwork-modal .modal-details {
+    flex: 1 1 auto;
+    width: 100%;
+    max-height: 45vh;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  #artwork-modal .modal-close {
+    top: 8px;
+    right: 8px;
+    font-size: 26px;
+  }
+}
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    #artwork-modal .modal-close {
+    top: 12px;
+    right: 12px;
+    font-size: 26px;
+    background: #D58258;
+    color: #FFFEE9;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(150,58,47,0.3);
+    transition: all 0.3s ease;
+  }
+
+  #artwork-modal .modal-close:hover {
+    background: #963A2F;
+    transform: scale(1.1);
+  }
+
+/* =========================
+   MOBILE-SPECIFIC ARTWORK MODAL IMPROVEMENTS (≤768px)
+   ========================= */
+@media (max-width: 768px) {
+  /* Prevent body scroll when modal is open */
+  body.modal-open {
     overflow: hidden;
+  }
+
+  /* Modal content layout */
+  #artwork-modal .modal-content {
+    flex-direction: column; /* stack image + details */
+    width: 95%;
+    max-width: 95%;
+    height: calc(100vh - 80px);
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  }
+
+  /* Image section */
+  #artwork-modal .modal-image {
+    flex: 0 0 40%;
+    width: 100%;
+    min-height: 180px;
+    max-height: 35vh;
   }
 
   #artwork-modal .modal-image img {
@@ -714,12 +839,66 @@ body {
     object-fit: cover;
   }
 
-  /* Details section scrollable */
+  /* Details section */
   #artwork-modal .modal-details {
+    flex: 1 1 auto;
+    width: 100%;
+    max-height: 45vh;
     padding: 20px;
-    overflow-y: auto;
-    flex-grow: 1;
+    overflow-y: auto; /* only text scrollable */
+    text-align: left; /* left-align details */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 8px;
+    font-size: 0.9em; /* smaller text */
+  }
+
+  /* Art title */
+  #artwork-modal .modal-details h2 {
+    font-size: 1.5em; /* smaller than desktop */
+    margin-bottom: 12px;
+    color: #D58258;
+    text-align: center; /* centered title */
+    font-weight: 600;
+  }
+
+  /* Artist, size, and other details */
+  #artwork-modal .modal-details .detail-item {
+    text-align: left;
+    display: block;
+    font-size: 1em;
+    line-height: 0.8;
+  }
+
+  /* Description text */
+  #artwork-modal .modal-details p {
+    font-size: 1em;
+    line-height: 1.5;
+    color: #5C412C;
+  }
+
+  /* Close button */
+  #artwork-modal .modal-close {
+    top: 12px;
+    right: 12px;
+    font-size: 26px;
+    background: #D58258;
+    color: #FFFEE9;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(150,58,47,0.3);
+    transition: all 0.3s ease;
+  }
+
+  #artwork-modal .modal-close:hover {
+    background: #963A2F;
+    transform: scale(1.1);
   }
 }
-
 

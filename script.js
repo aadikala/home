@@ -5,26 +5,26 @@
 
 /* ---------- Navigation ---------- */
 function showPage(pageId) {
-  document.querySelectorAll(".page").forEach((p) => p.classList.remove("active"));
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   const target = document.getElementById(pageId);
   if (target) target.classList.add("active");
 
-  document.querySelectorAll(".nav-link, .mobile-nav-link").forEach((l) => l.classList.remove("active"));
+  document.querySelectorAll(".nav-link, .mobile-nav-link").forEach(l => l.classList.remove("active"));
   const desktop = document.querySelector(`.nav-link[data-page="${pageId}"]`);
   const mobile = document.querySelector(`.mobile-nav-link[data-page="${pageId}"]`);
   if (desktop) desktop.classList.add("active");
   if (mobile) mobile.classList.add("active");
 }
 
-document.querySelectorAll(".nav-link").forEach((link) =>
-  link.addEventListener("click", (e) => {
+document.querySelectorAll(".nav-link").forEach(link =>
+  link.addEventListener("click", e => {
     e.preventDefault();
     showPage(link.getAttribute("data-page"));
   })
 );
 
-document.querySelectorAll(".mobile-nav-link").forEach((link) =>
-  link.addEventListener("click", (e) => {
+document.querySelectorAll(".mobile-nav-link").forEach(link =>
+  link.addEventListener("click", e => {
     e.preventDefault();
     showPage(link.getAttribute("data-page"));
     document.getElementById("mobile-nav")?.classList.remove("active");
@@ -37,6 +37,7 @@ document.getElementById("mobile-menu-btn")?.addEventListener("click", () => {
   document.getElementById("mobile-menu-btn")?.classList.toggle("active");
 });
 
+
 /* ---------- Portfolio Light Modal ---------- */
 (function initLightModal() {
   const modalEl = document.getElementById("artwork-modal");
@@ -44,16 +45,16 @@ document.getElementById("mobile-menu-btn")?.addEventListener("click", () => {
 
   function closeLightModal() {
     modalEl.classList.remove("active");
-    document.body.style.overflow = ""; // re-enable background scroll
+    document.body.classList.remove("modal-open"); // re-enable background scroll
   }
 
   modalEl.querySelectorAll(".modal-close").forEach(btn => btn.addEventListener("click", closeLightModal));
-  modalEl.addEventListener("click", (e) => { if (e.target === modalEl) closeLightModal(); });
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightModal(); });
+  modalEl.addEventListener("click", e => { if (e.target === modalEl) closeLightModal(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeLightModal(); });
 
   window.__openLightModal = function openLightModal(art) {
-    const m = (id) => document.getElementById(id);
-    m("modal-image").innerHTML = art.image ? `<img src="${art.image}" alt="${art.title}" style="width:100%;height:auto;" />` : "";
+    const m = id => document.getElementById(id);
+    m("modal-image").innerHTML = art.image ? `<img src="${art.image}" alt="${art.title}" />` : "";
     m("modal-title").textContent = art.title || "";
     m("modal-artist").textContent = art.artist || "";
     m("modal-size").textContent = art.size || "";
@@ -61,28 +62,43 @@ document.getElementById("mobile-menu-btn")?.addEventListener("click", () => {
     m("modal-year").textContent = art.year || "";
     m("modal-style").textContent = art.style || "";
     m("modal-description").textContent = art.description || "";
-    modalEl.classList.add("active");
-    document.body.style.overflow = "hidden"; // disable background scroll
+
+    const modal = document.getElementById("artwork-modal");
+    modal.classList.add("active");
+    document.body.classList.add("modal-open"); // prevent background scroll
+
+    // Mobile viewport adjustments
+    const content = modal.querySelector(".modal-content");
+    if (window.innerWidth <= 768) {
+      content.style.height = (window.innerHeight - 100) + "px"; // leave navbar space
+      content.style.flexDirection = "column";
+    } else {
+      content.style.height = "auto";
+      content.style.flexDirection = "row";
+    }
   };
 })();
 
+
 /* ---------- Featured Hover + No Popup ---------- */
 (function initFeatured() {
-  // create featured hover effect
   function initHover() {
     const container = document.getElementById("featured-grid");
     if (!container) return;
+
     container.querySelectorAll(".artwork-item").forEach(item => {
       const infoBar = item.querySelector(".info-bar");
       const artworkInfo = item.querySelector(".artwork-info");
       const desc = artworkInfo.querySelector(".featured-hover-description");
       if (!desc) return;
+
       desc.style.display = "none";
 
       item.addEventListener("mouseenter", () => {
         infoBar.classList.add("hover-active");
         desc.style.display = "block";
       });
+
       item.addEventListener("mouseleave", () => {
         infoBar.classList.remove("hover-active");
         desc.style.display = "none";
@@ -93,12 +109,14 @@ document.getElementById("mobile-menu-btn")?.addEventListener("click", () => {
   window.initFeaturedHoverEffect = initHover;
 })();
 
+
 /* ---------- Show Portfolio Detail ---------- */
 function showArtworkDetail(artIndex) {
   if (!window.portfolioData || !window.portfolioData[artIndex]) return;
   const art = window.portfolioData[artIndex];
   if (window.__openLightModal) window.__openLightModal(art);
 }
+
 
 /* ---------- Portfolio ---------- */
 const ITEMS_PER_PAGE = 16;
@@ -111,7 +129,6 @@ async function loadPortfolio() {
     if (!response.ok) throw new Error("Failed fetching portfolio_artworks.json");
     const data = await response.json();
     window.portfolioData = data;
-
     currentPage = 1;
     renderPortfolioPage(currentPage);
   } catch (error) {
@@ -145,7 +162,10 @@ function renderPortfolioPage(page = 1) {
       </div>
     `;
 
-    item.querySelector(".read-more-btn").addEventListener("click", () => showArtworkDetail((page - 1) * ITEMS_PER_PAGE + index));
+    item.querySelector(".read-more-btn").addEventListener("click", () => 
+      showArtworkDetail((page - 1) * ITEMS_PER_PAGE + index)
+    );
+
     container.appendChild(item);
   });
 
@@ -169,6 +189,7 @@ function renderPagination() {
     container.appendChild(btn);
   }
 }
+
 
 /* ---------- Portfolio Filter ---------- */
 function applyPortfolioFilter(filter) {
@@ -199,7 +220,7 @@ function applyPortfolioFilter(filter) {
   });
 }
 
-document.addEventListener("click", (e) => {
+document.addEventListener("click", e => {
   if (e.target.classList.contains("filter-btn")) {
     document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
     e.target.classList.add("active");
@@ -208,6 +229,7 @@ document.addEventListener("click", (e) => {
   }
 });
 
+
 /* ---------- Featured Artworks ---------- */
 async function loadFeaturedArtworks() {
   try {
@@ -215,7 +237,6 @@ async function loadFeaturedArtworks() {
     if (!response.ok) throw new Error("Failed fetching featured_artworks.json");
     const data = await response.json();
     window.featuredData = data;
-
     featuredCurrentPage = 1;
     renderFeaturedPage(featuredCurrentPage);
   } catch (error) {
@@ -233,7 +254,7 @@ function renderFeaturedPage(page = 1) {
   const end = start + ITEMS_PER_PAGE;
   const pageItems = window.featuredData.slice(start, end);
 
-  pageItems.forEach((art) => {
+  pageItems.forEach(art => {
     const item = document.createElement("div");
     item.className = "artwork-item";
 
@@ -272,6 +293,7 @@ function renderFeaturedPagination() {
   }
 }
 
+
 /* ---------- Preload Originality Images ---------- */
 const originalityImages = [
   'images/handmade.webp',
@@ -282,8 +304,12 @@ const originalityImages = [
 
 originalityImages.forEach(src => { const img = new Image(); img.src = src; });
 
+
 /* ---------- Initialize ---------- */
 document.addEventListener("DOMContentLoaded", () => {
   loadPortfolio();
   loadFeaturedArtworks();
 });
+
+document.body.classList.add("modal-open"); // block scroll
+document.body.classList.remove("modal-open"); // restore scroll
