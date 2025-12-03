@@ -1,5 +1,16 @@
 [
   {
+    "title": "Life among us",
+    "artist": "Neha Nidhi Kujur",
+    "image": "assets/Life among us.jpg",
+    "size": "8 × 16 inches",
+    "medium": "Acrylic on Handmade Paper",
+    "year": "2025",
+    "style": "Sohrai",
+    "description": "The title “Life Among Us”: Depicts life lived together in peace and harmony — a reminder of the wonder found in jungle life, where wildlife and nature coexist beautifully, a harmony often missing from our day-to-day lives.",
+    "available": true
+  },
+  {
     "title": "Fish with borders",
     "artist": "Neha Nidhi Kujur",
     "image": "assets/Fish with borders.jpg",
@@ -44,3 +55,4 @@
     "available": true
   }
 ]
+
