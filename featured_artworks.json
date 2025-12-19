@@ -1,10 +1,5 @@
 [
   {
-    "title": "पतड़ा नू बीड़ी - Sun in forest",
-    "image": "assets/Sun in forest.jpg",
-    "description": "Inspired by Sohrai tribal patterns"
-  },
-  {
     "title": "Tortoise with time",
     "image": "assets/Tortoise with time.jpg",
     "description": "Inspired by Sohrai tribal patterns"
@@ -18,5 +13,10 @@
     "title": "Fish with borders",
     "image": "assets/Fish with borders.jpg",
     "description": "Inspired by Sohrai tribal patterns"
+  },
+  {
+    "title": "We",
+    "image": "assets/we.png",
+    "description": "Inspired by Warli patterns"
   }
 ]

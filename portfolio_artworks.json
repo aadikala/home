@@ -1,14 +1,14 @@
 [
   {
-    "title": "Life among us",
+    "title": "We",
     "artist": "Neha Nidhi Kujur",
-    "image": "assets/Life among us.png",
-    "size": "8 × 16 inches",
+    "image": "assets/we.png",
+    "size": "13.5 × 12 inches",
     "medium": "Acrylic on Handmade Paper",
     "year": "2025",
-    "style": "Sohrai",
-    "description": "The title “Life Among Us”: Depicts life lived together in peace and harmony — a reminder of the wonder found in jungle life, where wildlife and nature coexist beautifully, a harmony often missing from our day-to-day lives.",
-    "available": true
+    "style": "Warli",
+    "description": "The title “We”: A Warli expression illustrating the tribe, their unity, and the cultural exchanges that shape their way of life.",
+    "available": false
   },
   {
     "title": "Fish with borders",
@@ -27,7 +27,7 @@
     "image": "assets/Hunt by the sun.jpg",
     "size": "12 × 18 inches",
     "medium": "Acrylic on Handmade Paper",
-    "year": "2025",
+    "year": "2024",
     "style": "Sohrai",
     "description": "Hunt by the Sun — radiant as the sun itself, tribal women of Jharkhand illuminate the path as they perform their ritual hunt of Jani-Shikar.",
     "available": false
@@ -49,11 +49,9 @@
     "image": "assets/Sun in forest.jpg",
     "size": "12 × 18 inches",
     "medium": "Acrylic on Canvas",
-    "year": "2025",
+    "year": "2024",
     "style": "Sohrai",
     "description": "The title “पतड़ा नूबीड़ी - Sun in forest”: the sun figures as woman, the forest as her surroundings—power luminous within its own horizon. The art portraits Jani-Shikar.",
-    "available": true
+    "available": false
   }
 ]
-
-
