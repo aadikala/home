@@ -2,13 +2,13 @@
   {
     "title": "We",
     "artist": "Neha Nidhi Kujur",
-    "image": "assets/we.png",
+    "image": "assets/We.png",
     "size": "13.5 × 12 inches",
     "medium": "Acrylic on Handmade Paper",
     "year": "2025",
     "style": "Warli",
     "description": "The title “We”: A Warli expression illustrating the tribe, their unity, and the cultural exchanges that shape their way of life.",
-    "available": false
+    "available": true
   },
   {
     "title": "Fish with borders",
