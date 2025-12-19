@@ -8,7 +8,7 @@
     "year": "2025",
     "style": "Warli",
     "description": "The title “We”: A Warli expression illustrating the tribe, their unity, and the cultural exchanges that shape their way of life.",
-    "available": true
+    "available": false
   },
   {
     "title": "Fish with borders",
@@ -55,3 +55,4 @@
     "available": false
   }
 ]
+
