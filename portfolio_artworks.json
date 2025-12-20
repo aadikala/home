@@ -1,5 +1,16 @@
 [
   {
+    "title": "Together",
+    "artist": "Neha Nidhi Kujur",
+    "image": "assets/Together.png",
+    "size": "13.5 × 12 inches",
+    "medium": "Acrylic on Handmade Paper",
+    "year": "2025",
+    "style": "Warli",
+    "description": "The title “Together”: A Warli expression illustrating the tribe, their unity, and the cultural exchanges that shape their way of life.",
+    "available": true
+  },
+  {
     "title": "We",
     "artist": "Neha Nidhi Kujur",
     "image": "assets/We.png",
@@ -55,4 +66,3 @@
     "available": false
   }
 ]
-
