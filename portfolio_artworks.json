@@ -1,5 +1,16 @@
 [
   {
+    "title": "Life Among Us",
+    "artist": "Neha Nidhi Kujur",
+    "image": "assets/Life Among Us.png",
+    "size": "8 x 16  inches",
+    "medium": "Acrylic on Handmade Paper",
+    "year": "2025",
+    "style": "Sohrai",
+    "description": ""The title “Life Among Us”: portraits the wildlife, how the jungle lives together. The life that exist in jungle but are endangered in human life.",
+    "available": true
+  },
+  {
     "title": "Together",
     "artist": "Neha Nidhi Kujur",
     "image": "assets/Together.png",
@@ -66,3 +77,4 @@
     "available": false
   }
 ]
+
